@@ -24,15 +24,21 @@ type-based organizing, optional archiving, and a tracking dashboard.
 **Core promise: nothing destructive happens without a preview and a confirmation,
 and deletions go to the Trash (recoverable), never `rm`.**
 
-## Step 1 — Intake (ask these, then stop and wait)
+## Step 1 — Welcome + intake (ask, then stop and wait)
 
-Ask the user up to three questions. Offer the defaults; accept short answers.
+Open with a one- or two-line welcome: say what SpaceBack does and the safety
+promise — "I'll scan the folder, show you a plan, and always ask before deleting
+or moving anything. Removed files go to the Trash (recoverable), never deleted
+permanently." Then ask up to three questions; offer the defaults and accept short
+answers.
 
-1. **Which folder should I clean?** (default: `~/Downloads`)
-2. **Duplicates: move extras to Trash, or report-only first?** (default: report-only on the first run, then they confirm)
-3. **Organize the remaining files into type folders when done?** (default: yes — ~6 folders by file type)
+1. **Which folder should I clean up?** (default: `~/Downloads`)
+2. **Duplicates — remove them (to the Trash, after you confirm) or just report them?** (default: remove, with confirmation)
+3. **Organize what's left into type folders when done?** (default: yes — ~6 folders by file type)
 
-Do not scan or change anything yet.
+Then **confirm the resolved absolute path** back to the user before doing anything:
+"I'll work on `<absolute path>` — correct?" Wait for confirmation. Do not scan or
+change anything until the folder is confirmed.
 
 ## Step 2 — Scan and explain the plan (dry run)
 
@@ -63,7 +69,15 @@ Run the bundled organizer to sort remaining top-level items into type folders
 `python3 <skill_dir>/scripts/organize.py --root "<folder>" --go`
 Preview the counts first (omit `--go` for a dry run).
 
-## Step 5 — Dashboard (offer it)
+## Step 5 — Offer to archive large media (only if found)
+
+If the scan found sizeable media (large videos or archives), offer to move it
+off-drive to reclaim space — never unprompted. If accepted, copy to the destination
+the user names (e.g. a Google Drive folder), **verify each copy byte-for-byte**, then
+ask whether to remove the local copy. Skip entirely if there's no large media or the
+user declines.
+
+## Step 6 — Dashboard (offer it)
 
 Offer to generate / update the **Storage Cleanup Tracker** with this run's real numbers:
 `python3 <skill_dir>/scripts/gen_dashboard.py --root "<folder>" --before-gb <N> --after-gb <N> --dupes <N> --folders <N> --label "<name>" --out "<folder>/SpaceBack-Tracker.html" --history "<skill_dir>/spaceback-history.json"`
