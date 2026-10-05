@@ -11,7 +11,7 @@
 - [ ] **End-to-end test** — run `/spaceback` on a test folder; confirm intake, preview, Trash-safe delete, organize, dashboard
 - [ ] **Package for install** — ship as a drop-in skill / `/spaceback` command (optionally wrap as a plugin)
 - [ ] **Optional monthly schedule** — set up a recurring run so cleanup is a habit
-- [ ] **GitHub repo** `JDACLLC/SpaceBack` — on hold pending GitHub auth on the Mac (local repo is already committed and ready to push)
+- [x] **GitHub repo** `JDACLLC/SpaceBack` (private) — created and pushed
 - [ ] Branding pass (name lockup, optional mascot) — reuse the "Retire the app" graphics
 
 ## v1.1 — Windows (circle back after Mac ships)
