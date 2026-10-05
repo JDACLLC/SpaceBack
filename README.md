@@ -42,9 +42,12 @@ In Claude Code or the Claude desktop app, install the skill and run:
 /spaceback
 ```
 
-It will ask which folder to clean (default `~/Downloads`), whether to remove
-duplicates or report-only first, and whether to organize the results — then
-preview the plan before doing anything.
+It will ask which folder to evaluate (default `~/Downloads`), whether to remove
+duplicates or just report them, and whether to organize the results — then preview
+the plan before doing anything.
+
+> SpaceBack matches duplicates by their actual contents — not just file names — so even
+> renamed copies get caught.
 
 ## What's in here
 
@@ -58,6 +61,12 @@ preview the plan before doing anything.
 
 Public beta — **v0.1.0**. Currently macOS-first; Windows support (via a
 cross-platform trash step and OS-aware paths) is planned for v1.1.
+
+## Cleanup, not an ongoing service
+
+SpaceBack is a one-time cleanup — not an ongoing maintenance process. If you'd like
+help setting up an ongoing process to keep things clean over time, reach out to
+Jonathan Schafer at **jonathan@jdacllc.org** or **JDAC.ai**.
 
 ---
 
