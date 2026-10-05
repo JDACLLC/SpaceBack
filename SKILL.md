@@ -32,7 +32,7 @@ or moving anything. Removed files go to the Trash (recoverable), never deleted
 permanently." Then ask up to three questions; offer the defaults and accept short
 answers.
 
-1. **Which folder should I clean up?** (default: `~/Downloads`)
+1. **Which folder should I evaluate?** (default: `~/Downloads`)
 2. **Duplicates — remove them (to the Trash, after you confirm) or just report them?** (default: remove, with confirmation)
 3. **Organize what's left into type folders when done?** (default: yes — ~6 folders by file type)
 
@@ -49,16 +49,22 @@ change anything until the folder is confirmed.
    copies are loose/top-level files. **Exclude** any group whose paths touch
    `node_modules`, `.app` bundles, `.git`, installed packages, `site-packages`,
    `.framework`, or similar — deleting inside those breaks apps/projects.
-3. Present a short, readable plan: how much space the safe duplicates would reclaim,
-   the top offenders, and (if organizing) the proposed type folders and counts.
-4. **Stop and get an explicit "go" before deleting or moving anything.**
+3. Present a short, readable plan. **Number each safe duplicate group** (1, 2, 3…),
+   showing the copy that would be kept and the extra(s) that would be removed, plus the
+   space each reclaims; and (if organizing) the proposed type folders and counts.
+4. **Stop and let the user choose — they stay in control.** They can approve **all,
+   none, or specific groups by number** (e.g. "remove 1, 2, and 5; keep the rest").
+   Nothing is deleted or moved until they say so. If they chose "report only" in intake,
+   still offer this here — they can then pick any groups to remove, or none.
 
-## Step 3 — De-duplicate (only after confirmation)
+## Step 3 — De-duplicate (only the approved groups)
 
-1. **Byte-verify** each duplicate group with a full hash before removing extras
+1. Act on **only the duplicate groups the user approved** in Step 2 (all, none, or the
+   specific numbers they named). Leave every other group untouched.
+2. **Byte-verify** each approved group with a full hash before removing extras
    (the fast scan uses head+tail; confirm with a full compare).
-2. Keep the cleanest-named copy (no `(1)`/` 2` copy markers; else oldest).
-3. **Move the extras to the Trash via Finder** (recoverable, supports "Put Back"):
+3. Keep the cleanest-named copy (no `(1)`/` 2` copy markers; else oldest).
+4. **Move the extras to the Trash via Finder** (recoverable, supports "Put Back"):
    `osascript -e 'tell application "Finder" to delete (POSIX file "<path>")'`
    Never use `rm`. Report how many files and how much space.
 
