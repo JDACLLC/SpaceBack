@@ -5,7 +5,15 @@ A macOS storage-cleanup **Claude skill** (install kit). Claude runs the `SKILL.m
 playbook conversationally and calls three bundled Python scripts. No server, no network
 calls, no stored data beyond a local run-history file the user keeps.
 
+## Packaging
+Shipped as a Claude Code **plugin** (`spaceback`) in a JDAC **marketplace** (`jdac`).
+The installable files live under `plugins/spaceback/` (`.claude-plugin/plugin.json` +
+`skills/run/`); governance records live at the repo root. The repo root is also the
+marketplace (`.claude-plugin/marketplace.json`).
+
 ## Components
+
+Component files are under `plugins/spaceback/skills/run/`.
 
 | Component | Role |
 |---|---|

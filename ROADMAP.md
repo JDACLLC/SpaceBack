@@ -11,7 +11,8 @@
 - [x] **End-to-end test** — ran the full flow on a test folder (dupes found by content, `node_modules` skipped, Trash-safe delete, organize, dashboard)
 - [x] **Intake flow validated** — welcome, folder-path confirmation, numbered selective per-group dedup
 - [x] **Readiness preflight check** — Python 3.8+, folder access, Trash, shell; plain-language fixes instead of mid-run failures
-- [ ] **Package as a plugin** — one-click / fewest-clicks install that wraps the skill (next)
+- [x] **Packaged as a plugin** — `jdac` marketplace + `spaceback` plugin; 2-command install, run `/spaceback:run` (manifests validated)
+- [ ] Smoke-test the **installed** plugin end-to-end (add marketplace → install → `/spaceback:run`)
 - [ ] **Optional monthly schedule** — set up a recurring run so cleanup is a habit
 - [x] **GitHub repo** `JDACLLC/SpaceBack` (private) — created and pushed
 - [ ] Branding pass (name lockup, optional mascot) — reuse the "Retire the app" graphics

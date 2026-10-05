@@ -3,7 +3,7 @@
 Full backlog and roadmap: see `ROADMAP.md` (the designated triage/backlog record).
 
 ## In Progress
-- Package SpaceBack as a **plugin** (fewest-clicks install).
+- Smoke-test the **installed** plugin end-to-end (`/plugin marketplace add` → `/plugin install` → `/spaceback:run`).
 
 ## Up Next
 - Point the **IP-15** canonical record (Drive + Notion) to protocol **v2.0.5**.
@@ -13,6 +13,7 @@ Full backlog and roadmap: see `ROADMAP.md` (the designated triage/backlog record
 - Jon's new link to confirm the newest protocol/assessment versions.
 
 ## Recently Done
+- Packaged as the `spaceback` plugin in the `jdac` marketplace (`/spaceback:run`); manifests validated.
 - Adopted JDAC DOC Protocol v2.0.5; reconciled the governed record set.
 - Readiness preflight, intake validation, usage terms, dashboard generator, end-to-end test.
 

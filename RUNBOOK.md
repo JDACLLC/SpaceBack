@@ -4,12 +4,16 @@
 - macOS with Claude Code or the Claude desktop app (command/shell access).
 - **Python 3.8 or newer** (`python3 --version`). On macOS: `xcode-select --install` if missing.
 
-## Install (current: manual skill; plugin packaging in progress)
-Place the `spaceback/` folder (with `SKILL.md` + `scripts/`) in your Claude skills
-directory, then invoke `/spaceback`. (One-click plugin install is the next milestone.)
+## Install (plugin via the JDAC marketplace)
+In a Claude Code terminal session (or the desktop app), two commands:
+
+    /plugin marketplace add JDACLLC/SpaceBack
+    /plugin install spaceback@jdac
+
+For local development without installing: `claude --plugin-dir ./plugins/spaceback`.
 
 ## Run
-1. `/spaceback`
+1. `/spaceback:run` — or just describe the task ("clean up my Downloads") and Claude invokes it.
 2. Answer the three questions (which folder to evaluate; remove duplicates or just report;
    organize when done). Confirm the folder path when asked.
 3. Review the numbered plan; approve all, none, or specific duplicate groups.

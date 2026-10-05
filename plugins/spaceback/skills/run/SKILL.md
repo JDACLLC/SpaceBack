@@ -1,12 +1,12 @@
 ---
-name: spaceback
+name: run
 description: >-
   SpaceBack — safely reclaim disk space and organize a messy folder on a Mac.
   Use when the user wants to clean up, declutter, free space, find duplicates,
   or organize their Downloads folder, a drive, or any folder ("my Downloads is
   a mess", "find duplicate files", "free up space", "organize this folder",
-  "run SpaceBack", "/spaceback"). Asks 2–3 questions, previews the plan, then
-  runs the cleanup and offers a tracking dashboard.
+  "run SpaceBack", "/spaceback:run"). Asks 2–3 questions, previews the plan, then
+  runs the process and offers a tracking dashboard.
 version: 0.1.0
 ---
 

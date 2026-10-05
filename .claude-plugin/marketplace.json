@@ -1,0 +1,15 @@
+{
+  "name": "jdac",
+  "description": "JDAC tools for Claude Code.",
+  "owner": {
+    "name": "Jonathan Schafer / JDAC, LLC",
+    "email": "jonathan@jdacllc.org"
+  },
+  "plugins": [
+    {
+      "name": "spaceback",
+      "source": "./plugins/spaceback",
+      "description": "Reclaim space and organize a folder on your Mac — safely, with you in control."
+    }
+  ]
+}

@@ -26,6 +26,16 @@ push copies to the Drive IP-18 evidence package at each "doc sync."
 **Alternative considered:** keep the Drive IP-18 records authoritative (rejected — in-repo
 travels with GitHub and is edited during the work).
 
+## DL-005 — Packaged as a plugin (marketplace "jdac", command `/spaceback:run`)
+**2026-10-05 · Adopted.** Packaged SpaceBack as a Claude Code plugin in a JDAC marketplace:
+`.claude-plugin/marketplace.json` (name `jdac`), plugin at `plugins/spaceback/`, skill at
+`skills/run/`. Install is two commands (`/plugin marketplace add JDACLLC/SpaceBack` →
+`/plugin install spaceback@jdac`); the command is **`/spaceback:run`** — plugin skills are
+always prefixed, and "run" was chosen over "clean" so it doesn't imply automatic deletion.
+Validated with `claude plugin validate`.
+**Alternatives considered:** a standalone skill for a bare `/spaceback` (rejected — loses
+the one-click marketplace install).
+
 ---
 
 Jonathan Schafer / Founder | JDAC Consulting / JDAC.ai | 480 620 4682 / Human-centered AI. Smarter workflows. Real-world efficiency.

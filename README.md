@@ -36,13 +36,16 @@ A disk analyzer shows you what's big. SpaceBack does more, with you in control:
 
 ## Use it
 
-In Claude Code or the Claude desktop app, install the skill and run:
+In Claude Code or the Claude desktop app, add the JDAC marketplace, install, and run:
 
 ```
-/spaceback
+/plugin marketplace add JDACLLC/SpaceBack
+/plugin install spaceback@jdac
+/spaceback:run
 ```
 
-It will ask which folder to evaluate (default `~/Downloads`), whether to remove
+(Or just say "clean up my Downloads" and Claude invokes it.) It will ask which folder
+to evaluate (default `~/Downloads`), whether to remove
 duplicates or just report them, and whether to organize the results — then preview
 the plan before doing anything.
 
@@ -51,11 +54,14 @@ the plan before doing anything.
 
 ## What's in here
 
-- `SKILL.md` — the SpaceBack engine (intake → preview → scan → act → organize → dashboard)
-- `scripts/scan.py` — Python-3.9-safe duplicate scanner (size-group + content hash)
-- `scripts/organize.py` — type-based folder organizer (dry-run by default)
-- `scripts/gen_dashboard.py` — generates the Storage Cleanup Tracker + keeps a run history
-- `dashboard-template.html` — reference design for the dashboard
+The installable plugin lives under `plugins/spaceback/` (manifest + the `run` skill):
+
+- `plugins/spaceback/skills/run/SKILL.md` — the SpaceBack engine (intake → preview → scan → act → organize → dashboard)
+- `plugins/spaceback/skills/run/scripts/scan.py` — Python-3.9-safe duplicate scanner (size-group + content hash)
+- `plugins/spaceback/skills/run/scripts/organize.py` — type-based folder organizer (dry-run by default)
+- `plugins/spaceback/skills/run/scripts/gen_dashboard.py` — generates the Storage Cleanup Tracker + keeps a run history
+- `plugins/spaceback/skills/run/dashboard-template.html` — reference design for the dashboard
+- `.claude-plugin/marketplace.json` — the JDAC marketplace entry; `plugins/spaceback/.claude-plugin/plugin.json` — the plugin manifest
 
 ## Documentation Status
 

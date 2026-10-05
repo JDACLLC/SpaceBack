@@ -17,6 +17,10 @@ Authoritative history of material changes. Semantic versioning. Dates are local 
 - JDAC Development Documentation Protocol v2.0.5 installed at `docs/DOC_PROTOCOL.md`;
   governed record set reconciled (this file, DECISION_LOG, ARCHITECTURE, RUNBOOK, TESTING,
   SECURITY, TODO; ROADMAP designated as the backlog/triage equivalent).
+- Packaged as the **`spaceback` plugin** in the **`jdac` marketplace**: skill + scripts moved
+  to `plugins/spaceback/skills/run/`; `.claude-plugin/marketplace.json` + plugin manifest added.
+  Install: `/plugin marketplace add JDACLLC/SpaceBack` → `/plugin install spaceback@jdac`;
+  run with `/spaceback:run`. Both manifests pass `claude plugin validate` (DL-005).
 
 ### Fixed
 - `organize.py` hardcoded-path bug — now requires `--root` and refuses `$HOME`/`/` (DL-001).
