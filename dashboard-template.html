@@ -1,0 +1,219 @@
+<title>Storage Cleanup Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
+<style>
+  /* Layout: single scannable column — summary KPIs up top, then before/after,
+     category bars, action log, and a two-entry cleanup history timeline. */
+  :root{
+    --bg:#eef1f4; --surface:#ffffff; --surface-2:#f6f8fa;
+    --ink:#1b2430; --muted:#5a6675; --line:#dce2e9;
+    --accent:#0e8f9e; --accent-soft:#d3ecef;
+    --good:#2f9e63; --warn:#c6861f;
+    --sans:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  }
+  @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+    --bg:#0e141b; --surface:#161f29; --surface-2:#1c2731;
+    --ink:#e7ecf1; --muted:#9aa7b4; --line:#2a3744;
+    --accent:#3fc3d2; --accent-soft:#143b41;
+    --good:#4cc281; --warn:#e0a84a; color-scheme:dark;
+  }}
+  :root[data-theme="dark"]{
+    --bg:#0e141b; --surface:#161f29; --surface-2:#1c2731;
+    --ink:#e7ecf1; --muted:#9aa7b4; --line:#2a3744;
+    --accent:#3fc3d2; --accent-soft:#143b41;
+    --good:#4cc281; --warn:#e0a84a; color-scheme:dark;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5}
+  .wrap{max-width:860px;margin:0 auto;padding-block:32px;padding-left:16px;padding-right:16px}
+  .mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+
+  header.head{display:flex;flex-wrap:wrap;align-items:baseline;gap:8px 14px;border-bottom:2px solid var(--ink);padding-bottom:14px}
+  .brand{font-weight:700;font-size:1.45rem;letter-spacing:-.01em}
+  .brand .tick{color:var(--accent)}
+  .head .sub{color:var(--muted);font-size:.9rem}
+  .stamp{margin-left:auto;font-family:var(--mono);font-size:.72rem;color:var(--muted);text-align:right;line-height:1.35}
+  .stamp b{color:var(--ink)}
+
+  h2{font-size:.78rem;font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--muted);margin:34px 0 14px}
+
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  @media(max-width:620px){.kpis{grid-template-columns:repeat(2,1fr)}}
+  .kpi{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px}
+  .kpi .v{font-family:var(--mono);font-weight:600;font-size:1.7rem;letter-spacing:-.02em;line-height:1.1}
+  .kpi .v small{font-size:.9rem;color:var(--muted);font-weight:500}
+  .kpi .l{font-size:.8rem;color:var(--muted);margin-top:6px}
+  .kpi.hero{background:var(--accent);border-color:var(--accent);color:#fff}
+  .kpi.hero .v,.kpi.hero .l{color:#fff}
+  .kpi.hero .delta{color:#eafcff}
+
+  .panel{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 18px 20px}
+
+  /* before / after */
+  .ba-row{display:flex;align-items:center;gap:12px;margin:10px 0}
+  .ba-row .tag{width:62px;flex:none;font-size:.82rem;color:var(--muted)}
+  .ba-track{flex:1;min-width:0;background:var(--surface-2);border-radius:6px;height:30px;position:relative;overflow:hidden}
+  .ba-fill{height:100%;border-radius:6px;display:flex;align-items:center;justify-content:flex-end;padding-right:9px;color:#fff;font-family:var(--mono);font-size:.82rem;font-weight:600}
+  .ba-before .ba-fill{background:linear-gradient(90deg,#8a97a6,#6d7a8a)}
+  .ba-after .ba-fill{background:linear-gradient(90deg,var(--accent),#0b6f7b)}
+  .ba-note{font-size:.84rem;color:var(--muted);margin-top:4px}
+  .ba-note b{color:var(--good)}
+
+  /* category bars */
+  .cat{display:grid;grid-template-columns:150px 1fr 62px;align-items:center;gap:12px;padding:7px 0}
+  @media(max-width:520px){.cat{grid-template-columns:110px 1fr 54px}}
+  .cat .name{font-size:.88rem}
+  .cat .bar-t{background:var(--surface-2);border-radius:5px;height:14px;min-width:0}
+  .cat .bar-f{height:100%;border-radius:5px;background:var(--accent)}
+  .cat .sz{font-family:var(--mono);font-size:.82rem;text-align:right;color:var(--muted)}
+
+  table{width:100%;border-collapse:collapse;font-size:.9rem}
+  .scroll{overflow-x:auto}
+  th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+  th{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  td.r,th.r{text-align:right;font-family:var(--mono);white-space:nowrap}
+  tbody tr:last-child td{border-bottom:none}
+  .act{font-weight:500}
+  .act small{display:block;color:var(--muted);font-weight:400;font-size:.82rem;margin-top:2px}
+
+  /* timeline */
+  .tl{display:grid;gap:14px}
+  .ev{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px 16px 16px 18px;border-left:4px solid var(--accent)}
+  .ev.past{border-left-color:var(--muted)}
+  .ev .top{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px}
+  .ev .date{font-family:var(--mono);font-size:.8rem;color:var(--accent);font-weight:600}
+  .ev.past .date{color:var(--muted)}
+  .ev .ttl{font-weight:600}
+  .ev .pill{margin-left:auto;font-size:.68rem;font-family:var(--mono);text-transform:uppercase;letter-spacing:.05em;padding:3px 8px;border-radius:999px;background:var(--accent-soft);color:var(--accent)}
+  .ev.past .pill{background:var(--surface-2);color:var(--muted)}
+  .ev .stats{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:10px}
+  .ev .stats div{font-size:.86rem;color:var(--muted)}
+  .ev .stats b{font-family:var(--mono);color:var(--ink);font-weight:600}
+  .ev .fine{font-size:.78rem;color:var(--muted);margin-top:9px;font-style:italic}
+
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px}
+  .chip{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:9px 12px;font-size:.86rem}
+  .chip b{font-family:var(--mono)}
+  .chip .k{color:var(--muted);font-size:.78rem;display:block}
+
+  footer{margin-top:34px;border-top:1px solid var(--line);padding-top:14px;color:var(--muted);font-size:.78rem;display:flex;flex-wrap:wrap;gap:6px 16px}
+  footer .mono{color:var(--ink)}
+</style>
+
+<div class="wrap">
+  <header class="head">
+    <span class="brand">Storage <span class="tick">Cleanup</span> Tracker</span>
+    <span class="sub">Mac storage maintenance log</span>
+    <span class="stamp">LAST CHECKED <b>2026-10-03</b><br>CADENCE monthly · static</span>
+  </header>
+
+  <!-- current cleanup headline -->
+  <h2>Most current cleanup — Downloads folder</h2>
+  <div class="kpis">
+    <div class="kpi hero">
+      <div class="v">23<small> GB</small></div>
+      <div class="l delta">reclaimed this pass (−66%)</div>
+    </div>
+    <div class="kpi">
+      <div class="v">35<small>→12 GB</small></div>
+      <div class="l">folder size before → after</div>
+    </div>
+    <div class="kpi">
+      <div class="v">6,085</div>
+      <div class="l">duplicate groups scanned</div>
+    </div>
+    <div class="kpi">
+      <div class="v">1,292<small>→6</small></div>
+      <div class="l">loose items → sorted folders</div>
+    </div>
+  </div>
+
+  <!-- before / after -->
+  <h2>Downloads size</h2>
+  <div class="panel">
+    <div class="ba-row ba-before">
+      <span class="tag">Before</span>
+      <div class="ba-track"><div class="ba-fill" style="width:100%">35 GB</div></div>
+    </div>
+    <div class="ba-row ba-after">
+      <span class="tag">After</span>
+      <div class="ba-track"><div class="ba-fill" style="width:34.3%">12 GB</div></div>
+    </div>
+    <p class="ba-note"><b>23 GB recovered</b> · ~20 GB deleted, ~1.2 GB archived to Google Drive, duplicates verified byte-for-byte before removal.</p>
+  </div>
+
+  <!-- category breakdown -->
+  <h2>What's left, by category</h2>
+  <div class="panel">
+    <div class="cat"><span class="name">Videos</span><div class="bar-t"><div class="bar-f" style="width:100%"></div></div><span class="sz">5.0 GB</span></div>
+    <div class="cat"><span class="name">Archives &amp; Installers</span><div class="bar-t"><div class="bar-f" style="width:58%"></div></div><span class="sz">2.9 GB</span></div>
+    <div class="cat"><span class="name">Projects &amp; Folders</span><div class="bar-t"><div class="bar-f" style="width:40%"></div></div><span class="sz">2.0 GB</span></div>
+    <div class="cat"><span class="name">Images</span><div class="bar-t"><div class="bar-f" style="width:22%"></div></div><span class="sz">1.1 GB</span></div>
+    <div class="cat"><span class="name">Documents</span><div class="bar-t"><div class="bar-f" style="width:13.5%"></div></div><span class="sz">677 MB</span></div>
+    <div class="cat"><span class="name">Audio</span><div class="bar-t"><div class="bar-f" style="width:2.2%"></div></div><span class="sz">109 MB</span></div>
+  </div>
+
+  <!-- action log -->
+  <h2>What we did</h2>
+  <div class="panel scroll">
+    <table>
+      <thead><tr><th>Action</th><th class="r">Reclaimed</th></tr></thead>
+      <tbody>
+        <tr><td class="act">Removed duplicates<small>79 identical copies from 62 byte-verified groups</small></td><td class="r">~4.3 GB</td></tr>
+        <tr><td class="act">Cleared app installers<small>installer files for apps already installed on the Mac</small></td><td class="r">~12 GB</td></tr>
+        <tr><td class="act">Redundant dev files<small>downloaded code dependencies + a duplicate extracted copy; original compressed source kept</small></td><td class="r">~2.4 GB</td></tr>
+        <tr><td class="act">Redundant archives<small>superseded and already-extracted archive copies</small></td><td class="r">~2.5 GB</td></tr>
+        <tr><td class="act">Archived elsewhere<small>large export + video clips relocated off the drive (backed up)</small></td><td class="r">~2.7 GB</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- archived elsewhere -->
+  <h2>Archived elsewhere</h2>
+  <div class="chips">
+    <div class="chip"><span class="k">Conversation backup</span><b>2.4 GB</b> · full export</div>
+    <div class="chip"><span class="k">Video clips</span><b>83 files</b> · 290 MB</div>
+    <div class="chip"><span class="k">Process recordings</span><b>4 files</b> · 928 MB</div>
+  </div>
+
+  <!-- history -->
+  <h2>Cleanup history</h2>
+  <div class="tl">
+    <div class="ev">
+      <div class="top">
+        <span class="date">2026-10-03</span>
+        <span class="ttl">Downloads folder</span>
+        <span class="pill">Completed</span>
+      </div>
+      <div class="stats">
+        <div>Reclaimed <b>23 GB</b></div>
+        <div>Size <b>35 → 12 GB</b></div>
+        <div>Dupes removed <b>79</b></div>
+        <div>Files scanned <b>87,568</b></div>
+        <div>Sorted into <b>6 folders</b></div>
+      </div>
+    </div>
+    <div class="ev past">
+      <div class="top">
+        <span class="date">2026-04-15</span>
+        <span class="ttl">External SSD — client photo archive</span>
+        <span class="pill">Logged</span>
+      </div>
+      <div class="stats">
+        <div>Identified <b>~59.5 GB</b></div>
+        <div>Duplicate groups <b>2,345</b></div>
+        <div>Files flagged <b>2,333</b></div>
+        <div>Variants kept <b>30</b></div>
+      </div>
+      <p class="fine">From the removal plan logged that day. Different target (external SSD, not Downloads).</p>
+    </div>
+  </div>
+
+  <footer>
+    <span>Static snapshot — refresh monthly.</span>
+    <span class="mono">Generated 2026-10-03</span>
+    <span>Figures from drive scan + verified removals.</span>
+  </footer>
+</div>
