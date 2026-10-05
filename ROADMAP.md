@@ -33,3 +33,7 @@
 - [ ] **Gather all SpaceBack documents + graphics into the canonical IP-18 Drive folder** — including the "Retire the App" graphics and any assets Jon created elsewhere, so the canonical record is complete (do later)
 - [ ] Update the footer phone number in the IP-2 Markdown Attribution Standard (still lists the old number)
 - [ ] Fold "every MD/collateral gets the top usage disclaimer + footer" into the IP-2 documentation/QA protocol (the standing check)
+- [x] Installed **JDAC Development Documentation Protocol v2.0.5** at `docs/DOC_PROTOCOL.md` (verbatim; DL-003)
+- [ ] **Reconcile SpaceBack docs under Protocol v2.0.5** — create the governed record set (CHANGELOG, TODO, TRIAGE, DECISION_LOG, ARCHITECTURE, RUNBOOK, testing/security as applicable); pending authorization
+- [ ] **Point the IP-15 canonical record (Drive + Notion) to protocol v2.0.5** — it currently holds only the v0.1 draft
+- [ ] Double-check all authoritative docs reference the newest versions (protocol v2.0.5, assessment v2.0.4) — verify against the new link Jon will provide

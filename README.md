@@ -57,6 +57,14 @@ the plan before doing anything.
 - `scripts/gen_dashboard.py` — generates the Storage Cleanup Tracker + keeps a run history
 - `dashboard-template.html` — reference design for the dashboard
 
+## Documentation Status
+
+**Protocol Version:** 2.0.5
+**Application Version:** 0.1.0
+**Documentation Last Reconciled With:** Not yet reconciled under Protocol v2.0.5
+**Reconciled On:** Pending
+**Known Exceptions:** None
+
 ## Status
 
 Public beta — **v0.1.0**. Currently macOS-first; Windows support (via a
