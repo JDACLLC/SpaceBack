@@ -7,9 +7,11 @@
 - [x] Register as JDAC IP asset (IP-18): Notion record, Drive folder, README
 - [x] `SKILL.md` engine (intake → preview → scan → act → organize → dashboard)
 - [x] Bundle proven scripts: `scan.py` (dup scanner), `organize.py` (type organizer)
-- [ ] **Dashboard generator** — script that auto-fills the Storage Cleanup Tracker with each run's real numbers (today it's a hand-filled template)
-- [ ] **End-to-end test** — run `/spaceback` on a test folder; confirm intake, preview, Trash-safe delete, organize, dashboard
-- [ ] **Package for install** — ship as a drop-in skill / `/spaceback` command (optionally wrap as a plugin)
+- [x] **Dashboard generator** — `gen_dashboard.py` auto-fills the self-contained tracker with each run's real numbers + keeps a run history
+- [x] **End-to-end test** — ran the full flow on a test folder (dupes found by content, `node_modules` skipped, Trash-safe delete, organize, dashboard)
+- [x] **Intake flow validated** — welcome, folder-path confirmation, numbered selective per-group dedup
+- [x] **Readiness preflight check** — Python 3.8+, folder access, Trash, shell; plain-language fixes instead of mid-run failures
+- [ ] **Package as a plugin** — one-click / fewest-clicks install that wraps the skill (next)
 - [ ] **Optional monthly schedule** — set up a recurring run so cleanup is a habit
 - [x] **GitHub repo** `JDACLLC/SpaceBack` (private) — created and pushed
 - [ ] Branding pass (name lockup, optional mascot) — reuse the "Retire the app" graphics
