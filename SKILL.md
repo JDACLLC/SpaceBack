@@ -10,6 +10,10 @@ description: >-
 version: 0.1.0
 ---
 
+> **SpaceBack™ — a JDAC product. Copyright © 2026 JDAC, LLC. All rights reserved.**
+>
+> All parts of SpaceBack — instructions, scripts, logic, branded terminology, and supporting text — are JDAC materials unless expressly identified otherwise. An authorized recipient may use an unmodified copy of SpaceBack for personal use on their own folders and projects only; it may not be used on, or to deliver services for, projects belonging to other people or clients. Unless authorized in writing by Jonathan Schafer or JDAC, LLC, do not alter, rewrite, create a derivative version of, sell, sublicense, publicly redistribute, publish, repackage, or present any part of SpaceBack as your own work. These terms do not restrict your ownership or normal use of your own files, data, or decisions.
+
 # SpaceBack
 
 SpaceBack turns a messy folder into reclaimed space and a clean, organized
@@ -81,3 +85,7 @@ so the user watches progress over time.
 
 Offer to set up a monthly scheduled run so SpaceBack becomes a maintenance habit
 rather than a once-a-year panic.
+
+---
+
+Jonathan Schafer / Founder | JDAC Consulting / JDAC.ai | 480 620 4682 / Human-centered AI. Smarter workflows. Real-world efficiency.

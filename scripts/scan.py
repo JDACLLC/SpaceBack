@@ -1,4 +1,9 @@
 #!/usr/bin/env python3
+# SpaceBack — a JDAC product. Copyright (c) 2026 JDAC, LLC. All rights reserved.
+# Personal use only, on the recipient's own folders/projects — not on others' projects
+# or for service delivery without written authorization from JDAC, LLC. Do not alter,
+# resell, sublicense, redistribute, or present as your own work.
+# Jonathan Schafer / JDAC Consulting / JDAC.ai
 # 3.9-compatible duplicate scanner: size-group then smart content hash.
 import os, sys, json, hashlib, argparse
 

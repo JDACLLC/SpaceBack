@@ -24,3 +24,10 @@
 
 > ~80% of the logic (scan, content-hash de-dup, organize) is already OS-agnostic.
 > The Windows work is mainly the delete step and path defaults.
+
+## IP & canonical housekeeping
+
+- [x] JDAC usage disclaimer (top) + attribution footer on `SKILL.md`, `README.md`, and script headers
+- [ ] **Gather all SpaceBack documents + graphics into the canonical IP-18 Drive folder** — including the "Retire the App" graphics and any assets Jon created elsewhere, so the canonical record is complete (do later)
+- [ ] Update the footer phone number in the IP-2 Markdown Attribution Standard (still lists the old number)
+- [ ] Fold "every MD/collateral gets the top usage disclaimer + footer" into the IP-2 documentation/QA protocol (the standing check)

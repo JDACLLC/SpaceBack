@@ -2,6 +2,10 @@
 
 **Retire the app. Get your space back.**
 
+> **SpaceBack™ — a JDAC product. Copyright © 2026 JDAC, LLC. All rights reserved.**
+>
+> All parts of SpaceBack — instructions, scripts, logic, branded terminology, and supporting text — are JDAC materials unless expressly identified otherwise. An authorized recipient may use an unmodified copy of SpaceBack for personal use on their own folders and projects only; it may not be used on, or to deliver services for, projects belonging to other people or clients. Unless authorized in writing by Jonathan Schafer or JDAC, LLC, do not alter, rewrite, create a derivative version of, sell, sublicense, publicly redistribute, publish, repackage, or present any part of SpaceBack as your own work. These terms do not restrict your ownership or normal use of your own files, data, or decisions.
+
 SpaceBack is a safety-first storage-cleanup process for your Mac, packaged as a
 [Claude](https://claude.com/claude-code) skill. Instead of a single-purpose disk
 app, SpaceBack asks a couple of questions, explains what it will do, then scans a
@@ -57,4 +61,4 @@ cross-platform trash step and OS-aware paths) is planned for v1.1.
 
 ---
 
-A JDAC product (IP-18). © JDAC LLC. Jonathan Schafer — Human-centered AI.
+Jonathan Schafer / Founder | JDAC Consulting / JDAC.ai | 480 620 4682 / Human-centered AI. Smarter workflows. Real-world efficiency.
