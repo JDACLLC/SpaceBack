@@ -47,7 +47,8 @@ preview the plan before doing anything.
 - `SKILL.md` — the SpaceBack engine (intake → preview → scan → act → organize → dashboard)
 - `scripts/scan.py` — Python-3.9-safe duplicate scanner (size-group + content hash)
 - `scripts/organize.py` — type-based folder organizer (dry-run by default)
-- `dashboard-template.html` — the Storage Cleanup Tracker dashboard
+- `scripts/gen_dashboard.py` — generates the Storage Cleanup Tracker + keeps a run history
+- `dashboard-template.html` — reference design for the dashboard
 
 ## Status
 

@@ -61,9 +61,12 @@ Preview the counts first (omit `--go` for a dry run).
 
 ## Step 5 — Dashboard (offer it)
 
-Offer to generate / update the **Storage Cleanup Tracker** dashboard with this run's
-real numbers (before→after size, space reclaimed, duplicates removed, folder counts),
-so the user can re-run SpaceBack monthly and watch progress over time.
+Offer to generate / update the **Storage Cleanup Tracker** with this run's real numbers:
+`python3 <skill_dir>/scripts/gen_dashboard.py --root "<folder>" --before-gb <N> --after-gb <N> --dupes <N> --folders <N> --label "<name>" --out "<folder>/SpaceBack-Tracker.html" --history "<skill_dir>/spaceback-history.json"`
+
+It computes the current category breakdown, appends the run to a history file, and
+writes a standalone HTML dashboard. Re-running SpaceBack monthly builds the history
+so the user watches progress over time.
 
 ## Safety rails (always)
 
