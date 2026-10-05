@@ -61,9 +61,14 @@ the plan before doing anything.
 
 **Protocol Version:** 2.0.5
 **Application Version:** 0.1.0
-**Documentation Last Reconciled With:** Not yet reconciled under Protocol v2.0.5
-**Reconciled On:** Pending
+**Documentation Last Reconciled With:** v0.1.0 (2026-10-05)
+**Reconciled On:** 2026-10-05
 **Known Exceptions:** None
+
+**Authoritative records (start here):** `docs/DOC_PROTOCOL.md` (governing protocol) ·
+`README.md` (this map) · `CHANGELOG.md` · `DECISION_LOG.md` · `ARCHITECTURE.md` ·
+`RUNBOOK.md` · `TESTING.md` · `SECURITY.md` · `TODO.md` (current work) · `ROADMAP.md`
+(backlog/triage). The Drive IP-18 folder holds point-in-time IP evidence snapshots.
 
 ## Status
 
