@@ -68,7 +68,7 @@ def categories(root):
 CSS = """
 :root{--bg:#eef1f4;--surface:#fff;--surface-2:#f6f8fa;--ink:#1b2430;--muted:#5a6675;
 --line:#dce2e9;--accent:#0e8f9e;--good:#2f9e63;
---sans:'IBM Plex Sans',system-ui,-apple-system,sans-serif;--mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;}
+--sans:-apple-system,BlinkMacSystemFont,'Segoe UI',system-ui,Roboto,sans-serif;--mono:ui-monospace,SFMono-Regular,Menlo,Consolas,'Liberation Mono',monospace;}
 @media(prefers-color-scheme:dark){:root{--bg:#0e141b;--surface:#161f29;--surface-2:#1c2731;
 --ink:#e7ecf1;--muted:#9aa7b4;--line:#2a3744;--accent:#3fc3d2;color-scheme:dark;}}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.5}
@@ -121,8 +121,6 @@ def render(label, root, before, after, reclaimed, dupes, folders, cats, history,
     return """<!doctype html><html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>SpaceBack Cleanup Tracker</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap">
 <style>%s</style></head><body><div class="wrap">
 <header class="head"><span class="brand">Space<span class="tick">Back</span> · Cleanup Tracker</span>
 <span class="sub">%s</span><span class="stamp">LAST RUN %s<br>re-run monthly</span></header>
