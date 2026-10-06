@@ -10,6 +10,13 @@ Full backlog and roadmap: see `ROADMAP.md` (the designated triage/backlog record
 - Point the **IP-15** canonical record (Drive + Notion) to protocol **v2.0.5**.
 - Double-check all authoritative docs reference v2.0.5 / assessment v2.0.4 (verify against Jon's new link).
 
+## Windows version (v1.1 — after Mac ships; full plan in ROADMAP.md)
+- Port the OS-specific layer: recoverable delete (Recycle Bin via `send2trash`), OS-aware paths, OS-branched `SKILL.md`, Windows readiness check.
+- Test end-to-end on a real Windows machine/VM (needs a Windows box — not testable from macOS).
+- Ship on the same repo/marketplace (install one-liner already works in PowerShell); bump → v1.1, validate, commit + push.
+- Make it downloadable: cut a **GitHub Release** (tag `v1.1`) with a zipped source asset; landing page links it.
+- Doc/IP sync afterward (DL, CHANGELOG, README, Drive snapshot, Notion).
+
 ## Waiting On
 - Jon's new link to confirm the newest protocol/assessment versions.
 
