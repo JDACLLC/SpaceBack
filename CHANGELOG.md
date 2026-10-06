@@ -22,8 +22,12 @@ Authoritative history of material changes. Semantic versioning. Dates are local 
   Install: `/plugin marketplace add JDACLLC/SpaceBack` → `/plugin install spaceback@jdac`;
   run with `/spaceback:run`. Both manifests pass `claude plugin validate` (DL-005).
 
+### Changed
+- Renamed the dashboard to the **Reclaim Report** (v0.1.1): solid-black title, dynamic folder name based on the chosen folder, and a new footer (Jonathan Schafer → mailto; JDAC.ai → website).
+
 ### Fixed
 - `organize.py` hardcoded-path bug — now requires `--root` and refuses `$HOME`/`/` (DL-001).
+- Run history now persists in `~/.spaceback/history.json` (was written inside the plugin cache, which is wiped on each update, resetting progress-over-time).
 
 ### Verification
 - End-to-end test on a throwaway folder: content-based duplicates found, `node_modules`

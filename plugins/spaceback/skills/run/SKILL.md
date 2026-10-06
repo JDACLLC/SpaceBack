@@ -7,7 +7,7 @@ description: >-
   a mess", "find duplicate files", "free up space", "organize this folder",
   "run SpaceBack", "/spaceback:run"). Asks 2–3 questions, previews the plan, then
   runs the process and offers a tracking dashboard.
-version: 0.1.0
+version: 0.1.1
 ---
 
 > **SpaceBack™ — a JDAC product. Copyright © 2026 JDAC, LLC. All rights reserved.**
@@ -106,14 +106,15 @@ the user names (e.g. a Google Drive folder), **verify each copy byte-for-byte**,
 ask whether to remove the local copy. Skip entirely if there's no large media or the
 user declines.
 
-## Step 7 — Dashboard (offer it)
+## Step 7 — Reclaim Report (offer it)
 
-Offer to generate / update the **Storage Cleanup Tracker** with this run's real numbers:
-`python3 <skill_dir>/scripts/gen_dashboard.py --root "<folder>" --before-gb <N> --after-gb <N> --dupes <N> --folders <N> --label "<name>" --out "<folder>/SpaceBack-Tracker.html" --history "<skill_dir>/spaceback-history.json"`
+Offer to generate / update the **Reclaim Report** with this run's real numbers:
+`python3 <skill_dir>/scripts/gen_dashboard.py --root "<folder>" --before-gb <N> --after-gb <N> --dupes <N> --folders <N> --label "<folder name>" --out "<folder>/SpaceBack-Reclaim-Report.html" --history "$HOME/.spaceback/history.json"`
 
-It computes the current category breakdown, appends the run to a history file, and
-writes a standalone HTML dashboard. Re-running SpaceBack monthly builds the history
-so the user watches progress over time.
+The history is kept in `~/.spaceback/history.json` so it **persists across plugin updates**.
+The report computes the current category breakdown, appends the run to the history, and
+writes a standalone HTML report. Offer to open it (`open "<path>"`). Re-running SpaceBack
+monthly builds the history so the user watches progress over time.
 
 ## Safety rails (always)
 

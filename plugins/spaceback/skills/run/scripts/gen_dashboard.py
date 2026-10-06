@@ -194,6 +194,9 @@ def main():
     hist.append(run)
     if a.history:
         try:
+            d = os.path.dirname(a.history)
+            if d:
+                os.makedirs(d, exist_ok=True)
             json.dump(hist, open(a.history, "w"), indent=2)
         except OSError:
             pass

@@ -1,7 +1,7 @@
 {
   "name": "spaceback",
   "description": "Reclaim space and organize a folder on your Mac — safely. SpaceBack finds true duplicates by content, previews a plan, and only acts with your confirmation (deletions go to the Trash, never permanent).",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "author": {
     "name": "Jonathan Schafer / JDAC, LLC",
     "email": "jonathan@jdacllc.org",
