@@ -24,6 +24,7 @@ Authoritative history of material changes. Semantic versioning. Dates are local 
 
 ### Changed
 - Renamed the dashboard to the **Reclaim Report** (v0.1.1): solid-black title, dynamic folder name based on the chosen folder, and a new footer (Jonathan Schafer → mailto; JDAC.ai → website).
+- Reworked the canonical install path to the **Terminal one-liner → Claude Code (new chat) → `/spaceback:run`**, after external testing surfaced three instructional failure modes (command at the shell prompt, a stale pre-install conversation, and regular Claude vs Claude Code). README install section rewritten; landing-page copy + copy-button specced (DL-006).
 
 ### Fixed
 - `organize.py` hardcoded-path bug — now requires `--root` and refuses `$HOME`/`/` (DL-001).

@@ -36,6 +36,27 @@ Validated with `claude plugin validate`.
 **Alternatives considered:** a standalone skill for a bare `/spaceback` (rejected — loses
 the one-click marketplace install).
 
+## DL-006 — Distribution/install path for the non-technical (Skool) audience
+**2026-10-05 · Adopted.** Primary install path: a **copy-button** on the landing page puts a
+single chained Terminal command on the clipboard —
+`claude plugin marketplace add JDACLLC/SpaceBack && claude plugin install spaceback@jdac` —
+the user pastes it once in **Terminal**, closes Terminal, then opens **Claude Code** (the
+desktop app's "Code" tab), starts a **new chat**, and runs **`/spaceback:run`**.
+External testing surfaced three failures — all instructional; the install itself verified
+correct (installed + enabled + files on disk): (1) typing `/spaceback:run` at the zsh prompt →
+`no such file or directory`; (2) typing it in a conversation opened *before* the install →
+"Unknown skill" (plugins load once, at session start); (3) typing it in **regular Claude**
+instead of **Claude Code** → not recognized. Resolved by hardened instructions: step 1 ends
+"**close Terminal**", step 2 names "**Claude Code** (Code tab), not a regular Claude chat,
+start a **new** chat", step 3 names the message box. The command-not-found footnote links to
+`https://code.claude.com/docs/en/setup`. Requires a paid Claude plan (Claude Code).
+The install one-liner is byte-for-byte identical on Windows (PowerShell), so this path also
+eases the future Windows release (DL-002); only the Trash/path runtime remains Windows-specific.
+**Alternatives considered:** in-app `/plugin` GUI install (rejected as primary — the marketplace
+store pane covers the window and adds navigation/clicks); download-a-zip-and-drop into
+`~/.claude/plugins` (rejected — a hidden folder, and it doubles the instructions on Windows for
+no runtime benefit).
+
 ---
 
 Jonathan Schafer / Founder | JDAC Consulting / JDAC.ai | 480 620 4682 / Human-centered AI. Smarter workflows. Real-world efficiency.

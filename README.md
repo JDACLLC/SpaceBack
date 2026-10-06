@@ -34,15 +34,30 @@ A disk analyzer shows you what's big. SpaceBack does more, with you in control:
 - Never de-duplicates inside app bundles, `node_modules`, `.git`, or installed packages
 - Keeps a source archive when removing an extracted project's regenerable files
 
-## Use it
+## Install and run
 
-In Claude Code or the Claude desktop app, add the JDAC marketplace, install, and run:
+**Easiest path (new to Claude Code).** Copy one command, paste it in Terminal, then run SpaceBack in the app:
+
+1. In **Terminal**, paste and run — then wait for the ✓ and **close Terminal**:
+   ```
+   claude plugin marketplace add JDACLLC/SpaceBack && claude plugin install spaceback@jdac
+   ```
+2. Open **Claude Code** — the "Code" tab in the Claude desktop app, **not** a regular Claude chat — and start a **new chat**.
+3. Type **`/spaceback:run`** and answer the questions on screen.
+
+*Terminal says `command not found: claude`? Install Claude Code first: <https://code.claude.com/docs/en/setup> (requires a paid Claude plan).*
+
+**Already in Claude Code?** Do it all with slash commands:
 
 ```
 /plugin marketplace add JDACLLC/SpaceBack
 /plugin install spaceback@jdac
 /spaceback:run
 ```
+
+> Why the specific steps: plugins load once when a conversation starts, so a brand-new
+> Claude Code chat (not the terminal prompt, and not a regular Claude chat) is what makes
+> `/spaceback:run` available. See DL-006.
 
 (Or just say "clean up my Downloads" and Claude invokes it.) It will ask which folder
 to evaluate (default `~/Downloads`), whether to remove
